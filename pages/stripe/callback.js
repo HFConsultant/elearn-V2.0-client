@@ -5,12 +5,10 @@ import UserRoute from "../../components/routes/UserRoute";
 import axios from "axios";
 
 const StripeCallback = () => {
-  const {
-    state: { user },
-  } = useContext(UserContext);
+  const [state] = useContext(UserContext);
 
   useEffect(() => {
-    if (user) {
+    if (state.user) {
       axios.post("/get-account-status").then((res) => {
         // console.log(res);
         dispatch({
@@ -21,7 +19,7 @@ const StripeCallback = () => {
         window.location.href = "/instructor";
       });
     }
-  }, [user]);
+  }, [state.user]);
 
   return (
     <SyncOutlined

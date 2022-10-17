@@ -13,9 +13,7 @@ import UserRoute from "../../components/routes/UserRoute";
 const BecomeInstructor = () => {
   // state
   const [loading, setLoading] = useState(false);
-  const {
-    state: { user },
-  } = useContext(UserContext);
+  const [state] = useContext(UserContext);
 
   const becomeInstructor = () => {
     //console.log("Become Instructor");
@@ -54,10 +52,7 @@ const BecomeInstructor = () => {
                 icon={loading ? <LoadingOutlined /> : <SettingOutlined />}
                 size="large"
                 onClick={becomeInstructor}
-                disabled={
-                  (user && user.role && user.role.includes("Instructor")) ||
-                  loading
-                }
+                disabled={state?.user?.role.includes("Instructor") || loading}
               >
                 {loading ? "Processing..." : "Payout Setup"}
               </Button>
